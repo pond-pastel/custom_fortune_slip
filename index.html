@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VL06GJZG4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        const analyticsDisabled = localStorage.getItem("analytics-disabled");
+        if(!JSON.parse(analyticsDisabled)) {
+            gtag('js', new Date());
+
+            gtag('config', 'G-2VL06GJZG4');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="自分で作ったオリジナルのおみくじをサイト上で遊べます。">
+    <meta name="keywords" content="ランダム, おみくじ, 抽選, オリジナル, くじ">
+    <link rel="canonical" href="https://pond-pastel.github.io/custom_fortune_slip/">
+    <!--ogp-->
+    <meta property="og:site_name" content="Pond Pastel">
+    <meta property="og:title" content="自分おみくじ">
+    <meta property="og:description" content="自分で作ったオリジナルのおみくじをサイト上で遊べます。">
+    <meta property="og:url" content="https://pond-pastel.github.io/custom_fortune_slip/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pond-pastel.github.io/custom_fortune_slip/image.png">
+    <!--/ogp-->
+    <!--twitter-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@pond_pastel_dev">
+    <meta name="twitter:title" content="自分おみくじ">
+    <meta name="twitter:description" content="自分で作ったオリジナルのおみくじをサイト上で遊べます。">
+    <meta name="twitter:image" content="https://pond-pastel.github.io/custom_fortune_slip/image.png">
+    <!--/twitter-->
+    <meta name="robots" content="index, follow">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "自分おみくじ",
+        "url": "https://pond-pastel.github.io/custom_fortune_slip/index.html",
+        "applicationCategory": "Utility",
+        "softwareVersion": "1.0.0",
+        "operatingSystem": "All",
+        "description": "自分で作ったオリジナルのおみくじをサイト上で遊べます。",
+        "creator": {
+            "@type": "Person",
+            "name": "Pond Pastel"
+        },
+        "datePublished": "2026-07-22",
+        "dateModified": "2026-07-22",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Pond Pastel",
+            "url": "https://pond-pastel.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://pond-pastel.github.io/logo.png"
+            }
+        },
+        "image": "https://pond-pastel.github.io/image.png",
+        "browserRequirements": "JavaScript対応ブラウザ",
+        "inLanguage": "ja"
+    }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "トップ",
+                    "item": "https://pond-pastel.github.io/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "自分おみくじ",
+                    "item": "https://pond-pastel.github.io/custom_fortune_slip/index.html"
+                }
+            ]
+        }
+    </script>
+    <title>自分おみくじ</title>
+    <link rel="icon" href="https://pond-pastel.github.io/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script type="module" src="main.js"></script>
+    <h1>自分おみくじ</h1>
+    <div id="jump-menu">
+        <div class="details" id="jump">
+            <button class="details-button" data-target="jump">
+                <b>Menu</b>
+            </button>
+            <div class="details-container">
+                <div class="details-content" id="jump-menu-content">
+                    <div class="jump-item">
+                        <button class="jump-button" data-jump-pos="step-1">Step1</button>
+                    </div>
+                    <div class="jump-item">
+                        <button class="jump-button" data-jump-pos="step-2">Step2</button>
+                    </div>
+                    <div class="jump-item">
+                        <button class="jump-button" data-jump-pos="step-3">Step3</button>
+                    </div>
+                    <div class="jump-item">
+                        <button class="jump-button" data-jump-pos="step-4">Step4</button>
+                    </div>
+                    <div id="lottery-edit-jump-group" style="display: none;">
+                        <div class="jump-item">
+                            <button class="jump-button" data-jump-pos="step-5">Step5</button>
+                        </div>
+                        <div class="jump-item">
+                            <button class="jump-button" data-jump-pos="step-6A">Step6A</button>
+                        </div>
+                        <div class="jump-item">
+                            <button class="jump-button" data-jump-pos="step-6B">Step6B</button>
+                        </div>
+                    </div>
+                    <div class="jump-item">
+                        <button class="jump-button" data-jump-pos="settings-group">詳細</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        *は必須項目
+    </div>
+    <div class="step-group" id="step-1">
+        <h2>
+            Step1. おみくじ名を決める(*)
+            <span class="invalid-value-alert set-name-title"></span>
+        </h2>
+        <div>
+            おみくじ名: 
+            <input type="text" id="set-name" data-attribute="set-name" placeholder="たかしのおみくじ">
+            <span class="invalid-value-alert set-name"></span>
+        </div>
+    </div>
+    <div>
+    <div class="step-group" id="step-2">
+        <h2>
+            Step2. くじを追加する(*2つ以上必須)
+            <span class="invalid-value-alert item-name-title"></span>
+        </h2>
+        <div>
+            <div>名前が入力されていない場合は追加されません。</div>
+            <div id="add-item-list">読み込み中…</div>
+            <p>
+                <button id="add-item-button">+くじを追加</button>
+            </p>
+        </div>
+    </div>
+    <div class="step-group" id="step-3">
+        <h2>Step3. 必要に応じて説明を追加</h2>
+        <textarea id="set-description" data-attribute="description" placeholder="たかしが作ったおみくじ"></textarea>
+    </div>
+    <div class="step-group" id="step-4">
+        <h2 id="add-edit-set-title">Step4. 全て入力したら追加する</h2>
+        <p>
+            <button id="add-set-button">+おみくじを追加</button>
+        </p>
+    </div>
+    <div id="lottery-edit-group" style="display: none;">
+        <div class="step-group" id="step-5">
+            <h2>Step5. おみくじを選択する</h2>
+            <p>
+                <select id="set-selector" data-attribute="set-selector">
+                    <option value="" selected disabled>--おみくじを選択してください</option>
+                </select>
+                <span class="invalid-value-alert set-selector"></span>
+            </p>
+            <div id="set-contents"></div>
+        </div>
+        <div class="step-group" id="step-6A">
+            <h2>Step6A. 抽選する</h2>
+            <p>
+                抽選する数: 
+                <input type="number" id="lottery-count" min="1" value="1" data-attribute="lottery-count">
+                <span class="invalid-value-alert lottery-count"></span>
+            </p>
+            <p>
+                <button id="lottery-button">抽選する</button>
+            </p>
+            <div id="lottery-results"></div>
+        </div>
+        <div class="step-group" id="step-6B">
+            <h2>Step6B. 編集、削除する</h2>
+            <p>
+                <button id="edit-set-button">編集する</button>
+                <button id="delete-set-button">削除する</button>
+            </p>
+        </div>
+    </div>
+    <div class="step-group" id="settings-group">
+        <h2>詳細</h2>
+        <div>
+            <h3>外観設定</h3>
+            <div id="appearance-mode-button-group">
+                <button class="appearance-mode-button" id="light-mode" data-target="light-mode-radio" title="ライトモード">
+                    <input type="radio" name="appearance-mode" id="light-mode-radio">
+                    <svg width="100px" height="100px" viewBox="0 0 100 100" class="appearance-mode-setting">
+                        <path fill="#eee" d="M 0 10 Q 0 0, 10 0 H 90 Q 100 0, 100 10 V 90 Q 100 100, 90 100 H 10 Q 0 100, 0 90 Z" />
+                        <path class="light-check appearance-check" fill="#222" d="M 40 10 H 60 L 50 20 Z" />
+                        <circle class="light-mark" fill="#222" cx="50" cy="50" r="20" />
+                        <text class="light-text appearance-text" fill="#222" x="14" y="90">ライトモード</text>
+                    </svg>
+                </button>
+                <button class="appearance-mode-button" id="dark-mode" data-target="dark-mode-radio" title="ダークモード">
+                    <input type="radio" name="appearance-mode" id="dark-mode-radio">
+                    <svg width="100px" height="100px" viewBox="0 0 100 100" class="appearance-mode-setting">
+                        <path fill="#222" d="M 0 10 Q 0 0, 10 0 H 90 Q 100 0, 100 10 V 90 Q 100 100, 90 100 H 10 Q 0 100, 0 90 Z" />
+                        <path class="dark-check appearance-check" fill="#eee" d="M 40 10 H 60 L 50 20 Z" />
+                        <path class="dark-mark" fill="#eee" d="M 30 50 A 10 10 0 0 0 50 30 A 20 20 0 0 1 50 70 A 20 20 0 0 1 30 50 Z" />
+                        <text class="dark-text appearance-text" fill="#eee" x="14" y="90">ダークモード</text>
+                    </svg>
+                </button>
+                <button class="appearance-mode-button" id="system-mode" data-target="system-mode-radio" title="システム">
+                    <input type="radio" name="appearance-mode" id="system-mode-radio" checked>
+                    <svg width="100px" height="100px" viewBox="0 0 100 100" class="appearance-mode-setting">
+                        <path class="system-bg" fill="currentColor" d="M 0 10 Q 0 0, 10 0 H 90 Q 100 0, 100 10 V 90 Q 100 100, 90 100 H 10 Q 0 100, 0 90 Z" />
+                        <path class="system-check appearance-check" fill="currentColor" d="M 40 10 H 60 L 50 20 Z" />
+                        <path class="system-mark" fill="currentColor" d="M 50 30 A 20 20 0 0 1 50 70 A 20 20 0 0 1 30 50 A 20 20 0 0 0 50 50 Z" />
+                        <text class="system-text appearance-text" x="26" y="90">システム</text>
+                    </svg>
+                </button>
+            </div>
+        <h3>関連リンク</h3>
+        <p>
+            <a href="https://pond-pastel.github.io/index.html" target="_blank">ホームページ</a>
+        </p>
+        <p>
+            <a class="privacy" href="https://pond-pastel.github.io/privacy.html" target="_blank">プライバシーポリシー・免責事項</a>
+        </p>
+        <h3>SNS</h3>
+        <div>
+            <b>不具合の報告やご要望はこちら</b>
+        </div>
+        <p>
+            <a href="https://x.com/pond_pastel_dev" title="X(旧: Twitter)@pond_pastel_dev" target="_blank" rel="nofollow noopener noreferrer">X(旧: Twitter): @pond_pastel_dev</a>(DMでもお受けしております)
+        </p>
+        <h3>バージョン履歴</h3>
+        <div class="details" id="v-1-0-0">
+            <button class="details-button" data-target="v-1-0-0">
+                <b>Ver.1.0.0</b>
+            </button>
+            <div class="details-container">
+                <div class="details-content">
+                    <div>
+                        <time datetime="2026-07-22">2026年7月22日</time>
+                    </div>
+                    <div>
+                        サイトの公開
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
